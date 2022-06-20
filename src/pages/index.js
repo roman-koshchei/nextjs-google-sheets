@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link';
 import ProductService from '../api/product-service';
+import { UnorderedList, ListItem } from '@chakra-ui/react';
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -28,15 +29,19 @@ export default function Home({ people, titles }) {
       </Head>
 
       <main className={styles.main}>
-        {people.map((person, index) => {
-          return (
-            <Link key={index}
-              href={`/${index}`}
-            >
-              <a style={{ margin: 10, padding: 7, border: "2px solid black" }}>{person.map((prop, index) => prop ? `${titles[index]}: ${prop}. ` : null)}</a>
-            </Link>
-          )
-        })}
+        <UnorderedList>
+          {people.map((person, index) => {
+            return (
+              <ListItem key={index}>
+                <Link
+                  href={`/${index}`}
+                >
+                  <a>{person.map((prop, index) => prop ? `${titles[index]}: ${prop}. ` : null)}</a>
+                </Link>
+              </ListItem>
+            )
+          })}
+        </UnorderedList>
       </main>
     </div >
   )

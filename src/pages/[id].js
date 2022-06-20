@@ -1,3 +1,4 @@
+import { TableContainer, Tbody, Tr, Td, Table } from '@chakra-ui/react';
 import ProductService from '../api/product-service';
 
 
@@ -24,8 +25,17 @@ export async function getStaticProps({ params }) {
 
 export default function Person({ info }) {
   return (
-    <div>
-      <h1>{info.map((prop, i) => <p key={i}>{prop}</p>)}</h1>
-    </div>
+    <TableContainer>
+      <Table>
+        <Tbody>
+          {info.map((prop, i) =>
+            <Tr key={i}>
+              <Td>{i}</Td>
+              <Td>{prop}</Td>
+            </Tr>
+          )}
+        </Tbody>
+      </Table>
+    </TableContainer>
   )
 }
